@@ -21,6 +21,13 @@ fi
 PROCESS=$1
 echo "PROCESS: $PROCESS"
 echo "old pid:";ps aux | grep $PROCESS | grep -v 'grep' | grep -v 'process' | awk '{print $2}'
-ps aux | grep $PROCESS | grep -v 'grep'| grep -v 'process' | awk '{print $2}' | xargs kill -s 9  
+
+var=`ps aux|grep $PROCESS | grep $1 | grep -v 'grep' |grep -v 'process' |wc -l`
+echo "PROCESS Number: $var"
+if (($var > 0))
+then
+    ps aux | grep $PROCESS | grep -v 'grep' | grep -v 'process' |awk '{print $2}' | xargs kill -s 9
+fi
+
 
 
