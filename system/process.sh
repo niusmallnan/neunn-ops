@@ -20,7 +20,7 @@ fi
 
 PROCESS=$1
 echo "PROCESS: $PROCESS"
-echo "old pid:";ps aux | grep $PROCESS | grep -v 'grep' | awk '{print $2}'
-ps aux | grep $PROCESS | grep -v 'grep' | awk '{print $2}' | xargs kill -s 9  
+echo "old pid:";ps aux | grep $PROCESS | grep -v 'grep' | grep -v 'process' | awk '{print $2}'
+ps aux | grep $PROCESS | grep -v 'grep'| grep -v 'process' | awk '{print $2}' | xargs kill -s 9  
 
 
