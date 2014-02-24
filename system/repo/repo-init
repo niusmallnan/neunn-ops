@@ -1,0 +1,66 @@
+#! /bin/bash
+#
+# repo_init.sh
+# Copyright (C) 2014 niusmallnan <zhangzhibo521@gmail.com>
+#
+# Distributed under terms of the MIT license.
+#
+# 用于初始化远程和本地的git资源仓库
+# 以便我们可以对comit message进行控制
+#
+
+
+LOCAL_HOOK_PATH="./.git/hooks/"
+BARE_HOOK_PATH="./hooks/"
+
+
+usage()
+{
+echo "缺少参数来指定本地仓库还是远程仓库"
+echo "指定本地 repo-init local"
+echo "指定远程 repo-init bare"
+}
+
+
+init()
+{
+SOURCE_FILE=$1commit-msg.sample
+DES_FILE=$1commit-msg
+
+if [ -d $DES_FILE ]; then
+    rm -f $DES_FILE
+fi
+
+cp $SOURCE_FILE $DES_FILE
+
+cat>>$DES_FILE<<EOF
+FILTER_REG=".*refs #[1-9]\d*"
+msg=\`cat \$1\`
+if [[ ! "\$msg" =~ \$FILTER_REG ]]; then
+    echo "please fill <refs #\d+> in commit messages"
+    exit 1
+fi
+EOF
+chmod a+x $DES_FILE
+}
+
+if (($# == 0)); then
+    usage
+    exit
+fi
+
+if [ ! -d $LOCAL_HOOK_PATH ] && [ ! -d $BARE_HOOK_PATH ]; then
+    echo "请在repo的根目录下执行!!!!"
+fi
+
+case $1 in
+    local)
+        init $LOCAL_HOOK_PATH
+        ;;
+    bare)
+        init $BARE_HOOK_PATH
+        ;;
+    *)
+        usage
+        exit 0
+esac
