@@ -41,8 +41,8 @@
 # environment variables. A common default password for all the services can be used by
 # setting the "SERVICE_PASSWORD" environment variable.
 
-read -p "admin user password (default:neunn@123): " ADMIN_PASSWORD
-ADMIN_PASSWORD=${ADMIN_PASSWORD:-neunn@123}
+read -p "admin user password (default:Neunn@123): " ADMIN_PASSWORD
+ADMIN_PASSWORD=${ADMIN_PASSWORD:-Neunn@123}
 
 NOVA_PASSWORD=${NOVA_PASSWORD:-${SERVICE_PASSWORD:-nova}}
 GLANCE_PASSWORD=${GLANCE_PASSWORD:-${SERVICE_PASSWORD:-glance}}
