@@ -9,7 +9,7 @@
 
 apt-get install -y ntp
 
-apt-get install python-software-properties
+apt-get install -y python-software-properties
 add-apt-repository cloud-archive:havana
 
 apt-get update && apt-get -y dist-upgrade
