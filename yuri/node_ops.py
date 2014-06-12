@@ -36,7 +36,6 @@ def ssh(ip, username, passwd, cmd=[], port=22):
         print '%s\t server power off \n'%(ip)
 
 def safe_shutdown(server_list, username, passwd):
-    return
     cmd = ['sudo shutdown -h now']
     for ip in server_list:
         td = threading.Thread(target=ssh, args=(ip, username, passwd, cmd))
@@ -64,10 +63,10 @@ if __name__=='__main__':
     
     if power_off:
         #get_ip_list('ip.cfg', power_on)
-        safe_shutdown(get_ip_list('ip.cfg', power_on), 'ubuntu', '')
+        safe_shutdown(get_ip_list('ip.cfg', power_off), 'ubuntu', '')
     if power_on:
         #print get_ip_list('ipmi.cfg', power_off)
-        ipmi_power(get_ip_list('ipmi.cfg', power_off), '-n')
+        ipmi_power(get_ip_list('ipmi.cfg', power_on), '-n')
     
     if power_check:
         #print get_ip_list('ipmi.cfg', power_check)
