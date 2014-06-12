@@ -1,0 +1,35 @@
+
+1、先是查看和配置ip信息和用户信息
+ ipmitool -H ip -U user -P xxxx lan print 1 #1为网络（lan）的信道(channel) ，默认是1， 运行命令时可以省略不输入。
+ ipmitool -I open lan print 1 #此命令和上面效果一样，不过此处是在本地执行，上一条是远程执行
+ ipmitool -I open lan set 1 ipaddr 192.168.0.120 #在隧道1设置ip
+ ipmitool -I open lan set 1 netmask 255.255.255.0 #在隧道1设置掩码
+ ipmitool -I open lan set 1 defgw ipaddr 192.168.0.254 #在隧道1设置网关
+ ipmitool -I open lan set 1 access on #开启隧道1访问
+ ipmitool -H ip -U root -P xxxx user list #查看用户列表
+ ipmitool -H ip -U root -P xxxx user set password 2 #设置用户密码
+
+2、查看传感器信息（对应管理A）
+ ipmitool -H ip -U root -P xxxx sdr  #打印传感器数据
+ ipmitool -H ip -U root -P xxxx sensor  #打印传感器详细数据
+
+3、远程开关机
+ ipmitool -H ip -U root -P xxxx power off   #硬关机，直接切断电源
+ ipmitool -H ip -U root -P xxxx power soft   #软关机，即如同轻按一下开机扭
+ ipmitool -H ip -U root -P xxxx power on  #硬开机
+ ipmitool -H ip -U root -P xxxx power reset   #硬重启
+ ipmitool -H ip -U root -P xxxx power status  #获取当前电源状态
+
+4、设置boot启动项
+ ipmitool -H ip -U root -P xxxx chassis bootdev <device>
+     bootdev <device> [clear-cmos=yes|no]
+     bootdev <device> [options=help,...]
+     none : Do not change boot device order
+     pxe : Force PXE boot
+     disk : Force boot from default Hard-drive
+     safe : Force boot from default Hard-drive, request Safe Mode
+     diag : Force boot from Diagnostic Partition
+     cdrom : Force boot from CD/DVD
+     bios : Force boot into BIOS Setup
+     floppy: Force boot from Floppy/primary removable media
+

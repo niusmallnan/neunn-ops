@@ -7,15 +7,9 @@
 #
 
 
-route -n delete -net 192.168.0.0/24 192.168.1.229
-route -n delete -net 11.11.11.0/24 192.168.1.229
-route -n delete -net 50.50.50.0/24 192.168.1.229
-route -n delete -net 20.20.20.0/24 192.168.1.212
-route -n delete -net 192.168.3.0/24 192.168.1.212
+route -n delete -net 172.17.0.0/16 172.16.99.1
+route -n delete -net 192.168.250.0/24 172.16.99.1
 
-route -n add -net 192.168.0.0/24 192.168.1.229
-route -n add -net 11.11.11.0/24 192.168.1.229
-route -n add -net 50.50.50.0/24 192.168.1.229
-route -n add -net 20.20.20.0/24 192.168.1.212
-route -n add -net 192.168.3.0/24 192.168.1.212
+route -n add -net 172.17.0.0/16 172.16.99.1
+route -n add -net 192.168.250.0/24 172.16.99.1
 
