@@ -1,0 +1,8 @@
+add-apt-repository ppa:saltstack/salt
+apt-get update
+apt-get install salt-minion -y
+
+auto eth1
+iface eth1 inet static
+    address 192.168.251.4
+    netmask 255.255.255.0
