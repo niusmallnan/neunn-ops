@@ -21,6 +21,7 @@ echo "$1"
 
 #install nova
 salt "$1" cmd.script salt://openstack/nova_compute_install.sh
+sleep 5
 # modify nova.conf
 salt-cp "$1" conf/nova.conf /etc/nova/nova.conf
 salt "$1" cmd.script salt://openstack/modify_nova_conf.sh
@@ -28,6 +29,7 @@ salt "$1" cmd.script salt://openstack/modify_nova_conf.sh
 
 # install neutron ml2 plugin
 salt "$1" cmd.script salt://openstack/nova_neutron_plugin_install.sh
+sleep 5
 # modify neutron ml2 conf
 salt-cp "$1" conf/neutron.conf /etc/neutron/neutron.conf
 salt-cp "$1" conf/ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.ini
