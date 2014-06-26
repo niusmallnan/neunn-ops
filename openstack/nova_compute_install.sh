@@ -8,11 +8,11 @@
 
 
 apt-get update
-apt-get install qemu-kvm -y
-apt-get install nova-compute-kvm python-guestfs -y
-apt-get install python-mysqldb -y
-dpkg-statoverride  --update --add root root 0644 /boot/vmlinuz-$(uname -r)
+apt-get install --reinstall python-mysqldb -y
+apt-get install --reinstall qemu-kvm -y
+apt-get install --reinstall nova-compute-kvm python-guestfs -y
 
+dpkg-statoverride  --update --add root root 0644 /boot/vmlinuz-$(uname -r)
 cat>>/etc/kernel/postinst.d/statoverride<<EOF
 #!/bin/sh
 version="\$1"
@@ -25,4 +25,5 @@ chmod +x /etc/kernel/postinst.d/statoverride
 
 rm /var/lib/nova/nova.sqlite
 
+update-rc.d -f apparmor remove
 
