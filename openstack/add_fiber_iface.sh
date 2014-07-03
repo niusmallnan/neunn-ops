@@ -5,6 +5,8 @@
 #
 # Distributed under terms of the MIT license.
 #
+apt-get install vlan -y
+modprobe 8021q
 
 ETH0_IP=`ifconfig eth0 | awk '/inet/{print $2}' | awk -F: '{print $2}' | awk -F "." '{print $4}'`
 cat>>/etc/network/interfaces<<EOF
