@@ -9,4 +9,4 @@
 mkdir -p /srv/salt/openstack
 cp modify_* /srv/salt/openstack/
 cp nova_* /srv/salt/openstack/
-
+cp install_ntp.sh /srv/salt/openstack/
