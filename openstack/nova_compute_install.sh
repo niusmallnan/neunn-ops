@@ -27,3 +27,6 @@ rm /var/lib/nova/nova.sqlite
 
 update-rc.d -f apparmor remove
 
+virsh net-destroy default
+virsh net-undefine default
+
